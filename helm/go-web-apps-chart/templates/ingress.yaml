@@ -1,0 +1,20 @@
+# Ingress resource for the application
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-web-app
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ac5c8d98f08d741a4b9b09e8eed08f71-363029106.us-east-1.elb.amazonaws.com
+    http:
+      paths: 
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: go-web-app
+            port:
+              number: 80
